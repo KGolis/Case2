@@ -42,9 +42,8 @@ print("\nTop 3 najwyżej oceniane filmy akcji (min. 50 głosów):")
 print(top_3)
 
 # Zbuduj system na podstawie algorytmu SVD oraz kNNwithMeans
-print("\n" + "=" * 50)
-print("--- SYSTEM REKOMENDACYJNY ---")
-print("=" * 50)
+print("SYSTEM REKOMENDACYJNY")
+
 
 macierz_ocen = oceny.pivot(index='user_id', columns='movie_id', values='rating')
 macierz_ocen_filled = macierz_ocen.fillna(0)
@@ -126,9 +125,8 @@ def rekomenduj_knn(user_id, liczba_rekomendacji=5):
 
 
 # Walidacja krzyżowa
-print("\n" + "=" * 50)
 print("Walidacja Krzyżowa (5 Folds)")
-print("=" * 50)
+
 
 kf = KFold(n_splits=5, shuffle=True, random_state=42)
 
@@ -179,9 +177,8 @@ print(f"\nŚredni RMSE dla SVD (5-fold CV): {np.mean(rmse_svd_folds):.4f}")
 print(f"Średni RMSE dla kNN (k={najlepsze_k}, 5-fold CV): {np.mean(rmse_knn_folds):.4f}")
 
 # Podaj rekomendacje po obejrzeniu filmu: NeverEnding Story III oraz Pi
-print("\n" + "=" * 50)
 print("REKOMENDACJE DLA KONKRETNYCH FILMÓW (Item-Based)")
-print("=" * 50)
+
 
 macierz_filmow = macierz_ocen_filled.T
 knn_item = NearestNeighbors(metric='cosine', algorithm='brute', n_neighbors=10)
@@ -227,10 +224,10 @@ while True:
         user_testowy = int(user_input)
 
         if user_testowy in macierz_ocen.index:
-            print(f"\n--- [SVD] Rekomendacje dla Usera {user_testowy} ---")
+            print(f"\n [SVD] Rekomendacje dla Usera {user_testowy} ")
             print(rekomenduj_svd(user_testowy))
 
-            print(f"\n--- [kNN] Rekomendacje dla Usera {user_testowy} (Najlepsze k={najlepsze_k}) ---")
+            print(f"\n [kNN] Rekomendacje dla Usera {user_testowy} (Najlepsze k={najlepsze_k}) ")
             print(rekomenduj_knn(user_testowy))
 
             kontynuacja = input("\nInny użytkownik? (t/n): ")
