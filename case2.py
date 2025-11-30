@@ -213,10 +213,8 @@ rekomenduj_po_tytule("Pi (1998)")
 min_id = macierz_ocen.index.min()
 max_id = macierz_ocen.index.max()
 
-print("\n" + "=" * 50)
-print(f" INTERAKTYWNY WYBÓR UŻYTKOWNIKA")
+
 print(f" Dostępne ID w bazie: od {min_id} do {max_id}")
-print("=" * 50)
 
 while True:
     try:
